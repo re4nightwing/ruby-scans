@@ -1,0 +1,25 @@
+runtime: php74 # Replace with php74 to use PHP 7.4
+
+handlers:
+# Serve a directory as a static resource.
+- url: /css
+  static_dir: css
+
+- url: /img
+  static_dir: img
+
+
+# Serve images as static resources.
+- url: /(.+\.(gif|png|jpg))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg)$
+
+# Serve your app through a front controller at index.php or public/index.php.
+- url: .*
+  script: auto
+  
+env_variables:
+  CLOUDSQL_USER: root
+  CLOUDSQL_DB: ruby_cons_db
+  CLOUDSQL_PASSWORD: A0FCaA9I1Fcp5iuf
+  CLOUDSQL_DSN: /cloudsql/ruby-cons:us-central1:ruby-cons

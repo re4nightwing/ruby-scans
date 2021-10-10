@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    background-color: #0f0f19;
+}
+.bg-img{
+    background: url(../img/admin-panel.jpg) no-repeat left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;  
+    filter: blur(4px);
+    z-index: -10;
+}
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
