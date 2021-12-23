@@ -22,14 +22,14 @@
     <div class="bg-img"></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">SlayerScans</a>
+            <a class="navbar-brand" href="admin.php">SlayerScans</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="admin.php">Dashboard</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -74,8 +74,8 @@
                         <div class="card-body">
                             <h5 class="card-title">User Details</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Details of the signed up users</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, quae?</p>
-                            <a href="admin-show-magazines.php" class="card-link btn btn-success">More Details</a>
+                            <p class="card-text">Remove signed users or check details of users</p>
+                            <a href="admin-show-users.php" class="card-link btn btn-success">More Details</a>
                         </div>
                     </div>
                 </div>
@@ -84,8 +84,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Messages/Requests</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Messages/Requests from users</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio, aspernatur!</p>
-                            <a href="admin-show-chapters.php" class="card-link btn btn-success">More Details</a>
+                            <p class="card-text">Read messages from users</p>
+                            <a href="admin-show-messages.php" class="card-link btn btn-success">More Details</a>
                         </div>
                     </div>
                 </div>

@@ -8,11 +8,41 @@ font-family: 'Oswald', sans-serif; */
 html{
     scroll-behavior: smooth;
 }
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: #fff;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: #ff183c;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: #ff183c;
+}
 body{
     margin: 0;
     padding: 0;
     background: url('../img/admin-panel.jpg') no-repeat fixed;
     background-size: cover;
+}
+.pageCover { 
+    position:fixed; 
+    z-index:10; 
+    background-color:rgba(0,0,0,.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: (4px);
+    width:100vw; 
+    height:100vh; 
+    top:0; 
+    left:0;
 }
 .disabled {
     pointer-events:none;
@@ -35,6 +65,7 @@ body{
     padding-top: 4rem;
     padding-bottom: 4.5rem;
     font-family: 'Nunito', sans-serif;
+    min-height: 90vh;
 }
 .mag-card{
     position: relative;

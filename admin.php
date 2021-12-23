@@ -3,7 +3,7 @@
         $usrName = $_POST['username'];
         $pswd = $_POST['password'];
         if($usrName == 'admin' && $pswd == 'root'){
-            setcookie("lgUsr",'admin', time() + (3600 * 24 * 30), "/");
+            setcookie("lgUsr",'admin', time() + (3600 * 24 * 10), "/");
             ?>
             <script>
                 alert('Logged In!');

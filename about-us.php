@@ -1,43 +1,56 @@
 <?php
 session_start();
+
 $login_status = 0;
-$user_list = array();
-$wish_list = array();
+$user_mail = 0;
+$user_id = 0;
 if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
+    $user_mail = $_SESSION["email"];
+    $user_id = $_SESSION['user_uid'];
     $login_status = 1;
-    
-    include 'db-conn.php';
-    $stmt = $dbh->prepare("SELECT * FROM `user_details` WHERE `user_mail`=? LIMIT 1"); 
-    $stmt->execute([$_SESSION['email']]); 
-    $row = $stmt->fetch();
-    if ($stmt->rowCount() > 0) {
-        $dbh = null;
-        $wish_list_check = 1;
-        $user_list_check = 1;
-        $_SESSION['user_list'] = $row['user_bought'];
-        $_SESSION['wish_list'] = $row['user_list'];
-        if(is_null($_SESSION['user_list'])){
-            $user_list_check = 0;
+
+    if(isset($_POST['msg-submit'])){
+        $msg_heading = $_POST['msg-heading'];
+        $msg_body = $_POST['msg-body'];
+        $data = array(
+            'secret' => "0x9818Df50a8dBE7E56327d2A5FD6C8091A71ae185",
+            'response' => $_POST['h-captcha-response']
+        );
+        $verify = curl_init();
+        curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+        curl_setopt($verify, CURLOPT_POST, true);
+        curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($verify);
+        // var_dump($response);
+        $responseData = json_decode($response);
+        if($responseData->success) {
+            include 'db-conn.php';
+            $sql = "INSERT INTO `user_msgs`(`msg_by`, `msg_heading`, `msg_body`, `msg_type`) VALUES (?,?,?,?)";
+            $stmt= $dbh->prepare($sql);
+            try{
+                $stmt->execute([$user_mail, $msg_heading, $msg_body, 1]);
+                ?>
+                <script>
+                    alert("Mail sent successfully!");
+                </script>
+                <?php
+            } catch(Exception $e){
+                $dbh->rollback();
+                throw $e;
+            } finally{
+                $dbh = null;
+            }
         } else{
-            $user_list = explode(',',$_SESSION['user_list']);
+            ?>
+            <script>
+                alert("Please fill the Captcha to send!");
+                window.location.href = "about-us.php?hcaptcha=failed";
+            </script>
+            <?php 
         }
-        if(is_null($_SESSION['wish_list'])){
-            $wish_list_check = 0;
-        } else{
-            $wish_list = explode(',',$_SESSION['wish_list']);
-        }
-    } else{
-        $dbh = null;
-        ?>
-        <script>
-            alert("Error occured Please login again");
-            window.location.href = "user-logout.php";
-        </script>
-        <?php
     }
 }
-$category_list = ['Action','Adult','Adventure','Comedy','Doujinshi','Drama','Ecchi','Fantasy','Gender Bender','Harem','Hentai','Historical','Horror','Isekai','Josei','Lolicon','Martial Arts','Mature','Mecha','Mystery','Psychological','Romance','School Life','Sci-fi','Seinen','Shotacon','Shoujo','Shoujo Ai','Shounen','Shounen Ai','Slice of Life','Smut','Sports','Supernatural','Tragedy','Yaoi','Yuri'];
-$category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-light text-dark", "bg-dark");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,99 +58,105 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome | Ruby Scans</title>
+    <title>About Us | Ruby Scans</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" type="image/png" href="img/favicon.png">
     <style>
-    .showcase-swiper {
-        width: 100%;
-        height: 60vh;
-    }
-    .swiper-wrapper {
-        height: auto !important;
-    }
+        h1{
+            font-family: 'Oswald', sans-serif;
+        }
+        .ruby{
+            color: #ed053b;
+        }
+        .slidecontainer {
+            width: 100%;
+        }
 
-    .showcase-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            border-radius: 20px;
+        }
 
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
-    .showcase-slide img{
-        flex-shrink: 0;
-        min-width: 100%;
-        min-height: 100%
-    }
-    .slides-per-view {
-      width: 100%;
-      height: auto;
-    }
+        .slider:hover {
+            opacity: 1;
+        }
 
-    .slides-per-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #ffffff47;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-      /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-        height: 300px;
-        transition: 0.4s ease-out;
-    }
-    .slides-per-slide img{
-        transition: 0.4s ease-out;
-    }
-    .slides-per-slide:hover img{
-        filter: grayscale(.7);
-        transform: scale(1.2);
-        box-shadow: 0 0 8px #000;
-    }
-    .slides-per-slide:hover .abs-slide-content{
-        opacity: 1;
-    }
-    .popular-sec{
-        background-color: #2c031057;
-    }
-    .abs-slide-content{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width: 100%;
-        text-align: center;
-        opacity: 0;
-        transition: 0.4s ease-out;
-    }
-    .abs-slide-content h4{
-        text-shadow: 2px 2px 4px #000;
-    }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #ed053b;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #ed053b;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        .game-card{
+            background: #fff;
+            border-radius: 4px;
+        }
+        .profile-card{
+            overflow: hidden;
+            border-radius: 50px;
+            height: 20rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border: 2px solid #fff;
+        }
+        .profile-card .abs-content{
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            text-align: center;
+        }
+        .profile-card .abs-social{
+            position: absolute;
+            top: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: .4s ease-out;
+        }
+        .profile-card:hover .abs-social{
+            opacity: 1;
+        }
+        .profile-card .abs-social a{
+            color: #ed053b;
+            font-size: 20px;
+            transition: .4s ease-out;
+        }
+        .profile-card .abs-social a:hover{
+            color: #fff;
+        }
+        .profile-card img{
+            min-height: 100%;
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+        .ruby {
+            color: #ed053b;
+        }
     </style>
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
@@ -207,162 +226,125 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
             </div>
         </div>
     </nav>
-    <div class="container-fluid px-0">
-        <div class="swiper showcase-swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png?text=Welcome" class="" alt="">
-                </div>
-                <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png" class="" alt="">
-                </div>
-                <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png" class="" alt="">
-                </div>
-                <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png" class="" alt="">
-                </div>
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination swiper-pagination-custom1" style="bottom: 0; top: auto;"></div>
-            <!-- Add Arrows -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
-    <section class="popular-sec py-5">
-        <div class="container-xl">
-            <h2 class="dark-bg-heading">Most Popular</h2>
-            <div class="swiper slides-per-view">
-                <div class="swiper-wrapper">
-                    <?php
-                        include 'db-conn.php';
-                        $custom_query = "SELECT * FROM `magazine-details` WHERE `mag_views`!=0 ORDER BY `magazine-details`.`mag_views` DESC LIMIT 10";
-                        foreach ($dbh->query($custom_query) as $data) {
-                            ?>
-                            <div class="swiper-slide slides-per-slide">
-                                <a href="magazine-details.php?mag-id=<?php echo $data['mag_id'];?>">
-                                <img src="https://i.imgur.com/<?php echo $data['mag_cover'];?>" alt="">
-                                <div class="abs-slide-content">
-                                    <h4 class="text-light"><?php echo $data['mag_title']?></h4>
-                                    <span class="badge bg-primary"><?php echo $data['mag_status'];?></span>
-                                </div>
-                                </a>
-                            </div>
-                            <?php
-                        }
-                    ?>
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination swiper-pagination-custom2"></div>
-            </div>
-        </div>
-    </section>
     <section class="content-sec">
         <div class="container-xl" id="content-container">
-            <div class="row justify-content-center text-center">
-            <!-- ss -->
-            <div class="col-xl-8 col-12">
-                <h2 class="dark-bg-heading text-center mb-4">Recent Releases</h2>
-                <div class="row justify-content-center">
-                    <?php
-                    //`mag_id`, `mag_title`, `mag_alt_title`, `mag_author`, `mag_genre`, `mag_type`, `mag_release`, `mag_status`, `mag_desc`, `mag_cover`
-                    
-                    $custom_query = "SELECT `magazine_id`, `upload_date`,`chapter_number` FROM `magazine-chapters` ORDER BY `upload_date` DESC LIMIT 15";
-                    foreach ($dbh->query($custom_query) as $data) {
-                        $searchID = $data['magazine_id'];
-                        $chapNumber = $data['chapter_number'];
-                        $has_bought = 0;
-                        foreach($user_list as $id){
-                            if($id == $searchID){
-                                $has_bought = 1;
-                                break;
-                            }
-                        }
-                        $secondary_query = "";
-                        $secondary_query = $dbh->prepare("SELECT `mag_id`, `mag_title`,`mag_release`,`mag_cover` FROM `magazine-details` WHERE `mag_id`= ? LIMIT 1"); 
-                        $secondary_query->execute([$searchID]); 
-                        $row = $secondary_query->fetch();
-                        if($has_bought){
-                        ?>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-12 my-2">
-                            <a href="view-chapter.php?id=<?php echo $row['mag_id'];?>&chapter=<?php echo $chapNumber;?>">
-                                <div class="mag-card mx-auto rounded shadow-sm">
-                                    <img src="https://via.placeholder.com/225×350.png" data-src="https://i.imgur.com/<?php echo $row['mag_cover'];?>" class="lazy img-fluid" alt="">
-                                    <div class="mag-text">
-                                        <h5><?php echo $row['mag_title'];?> <span>(<?php echo $row['mag_release'];?>)</span></h5>
-                                    </div>
-                                    <div class="mag-chapter">
-                                        <h4><span class="badge bg-danger">Chapter: <?php echo $chapNumber;?></span></h4>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <?php
-                        } else{
-                            ?>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-12 my-2">
-                                <a href="magazine-details.php?mag-id=<?php echo $searchID;?>">
-                                    <div class="mag-card mx-auto rounded shadow-sm">
-                                        <img src="https://via.placeholder.com/225×350.png" data-src="https://i.imgur.com/<?php echo $row['mag_cover'];?>" class="lazy img-fluid" alt="">
-                                        <div class="mag-text">
-                                            <h5><?php echo $row['mag_title'];?> <span>(<?php echo $row['mag_release'];?>)</span></h5>
-                                        </div>
-                                        <div class="mag-chapter">
-                                            <h4><span class="badge bg-danger">Chapter: <?php echo $chapNumber;?></span></h4>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <?php
-                        }
-                    }
-                    $dbh = null;
-                    ?>
-                </div>
+            <div class="text-center">
+                <h1>Meet the <span class="ruby">Team</span></h1>
             </div>
-            
-            <!-- ss -->
-                <div class="col-xl-4 col-12 mt-4">
-                    <div class="row justify-content-around">
-                        <div class="col-xl-12 col-md-6 col-11 my-2">
-                            <iframe src="https://discord.com/widget?id=737401246763319399&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                        </div>
-                        <div class="col-xl-10 col-md-6 col-11">
-                            <?php
-                                foreach ($category_list as $item){
-                                    echo "<a href='search-manga.php?searchq=&authorq=&yearq=&sortq=asc&statusq=all&typeq=all&genreq=".$item."' class='h5 mx-2'><span class='badge ".$category_class[array_rand($category_class)]." my-2'>$item</span></a>";
-                                }
-                            ?>
-                        </div>
+            <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 justify-content-around mt-5">
+                <div class="col profile-card mx-2 shadow-sm">
+                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
+                    <div class="abs-content">
+                        <h5>John Doe</h5>
+                        <h6>Member</h6>
+                    </div>
+                    <div class="abs-social">
+                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="col profile-card mx-2 shadow-sm">
+                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
+                    <div class="abs-content">
+                        <h5>John Doe</h5>
+                        <h6>Member</h6>
+                    </div>
+                    <div class="abs-social">
+                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="col profile-card mx-2 shadow-sm">
+                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
+                    <div class="abs-content">
+                        <h5>John Doe</h5>
+                        <h6>Member</h6>
+                    </div>
+                    <div class="abs-social">
+                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="col profile-card mx-2 shadow-sm">
+                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
+                    <div class="abs-content">
+                        <h5>John Doe</h5>
+                        <h6>Member</h6>
+                    </div>
+                    <div class="abs-social">
+                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="col profile-card mx-2 shadow-sm">
+                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
+                    <div class="abs-content">
+                        <h5>John Doe</h5>
+                        <h6>Member</h6>
+                    </div>
+                    <div class="abs-social">
+                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
             </div>
+            <section id="contact-us" class="mt-5">
+                <div class="text-center">
+                    <h1>Contact <span class="ruby">Us</span></h1>
+                </div>
+                <div class="row justify-content-around">
+                    <div class="col-lg-5 col-md-6 col-sm-10 col-11 text-center mt-5">
+                        <h2>Contact Form</h2>
+                        <form action="about-us.php?mail=send" method="POST" id="msg-form">
+                            <div class="mb-3">
+                                <label for="mailheading" class="form-label">Message Heading:</label>
+                                <input type="text" class="form-control" id="mailheading" name="msg-heading" maxlength="200" placeholder="Heading here">
+                            </div>
+                            <div class="mb-3">
+                                <label for="mailbody" class="form-label">Message Body:</label>
+                                <textarea class="form-control" id="mailbody" name="msg-body" rows="4" maxlength="500" placeholder="Join the team/ submit your work/ give us feedback"></textarea>
+                            </div>
+                            <div class="h-captcha" data-sitekey="4f31e0fb-93ca-4815-84e4-45db33257a45"></div>
+                            <?php 
+                            if($login_status){
+                                echo "<button type='submit' id='msg-btn' name='msg-submit' class='btn btn-primary' disabled>Submit</button>";
+                            } else{
+                                echo "<a class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>Submit</a>";
+                            }
+                            ?>
+                        </form>
+                    </div>
+                    <div class="col-lg-5 col-11  mt-5">
+                        <div class="text-center">
+                            <h2>Join the Ruby Scans Team</h2>
+                        </div>
+                        <div class="text-start">
+                            <p>We are looking for,</p>
+                            <ul>
+                                <li>Translators (Chinese, Korean)</li>
+                                <li>Raw Providers</li>
+                                <li>Proofreaders</li>
+                                <li>Cleaners</li>
+                                <li>Re-Drawers</li>
+                                <li>Typesetters</li>
+                                <li>Quality-Checkers</li>
+                            </ul>
+                            <P>In order to join with us, either put a message using the contact form mentioning <strong>your email</strong> and <strong>discord ID</strong> (eg: re4nightwing#8603). One of our members will contact you as soon as possible.</P>
+                            <p>Other than that you can contact one of our members by joining our <a href="https://discord.gg/UJprcX8WXA" class="link-warning">discord server <i class="fab fa-discord"></i></a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </section>
-
     <?php
         include 'footer.php';
     ?>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModal1Label">Read Manga</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Wanna read?
-                    <input type="hidden" class="form-control" id="recipient-name">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Buy It</button>
-                    <button type="button" class="btn btn-primary">Add to Wishlist</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -388,7 +370,7 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
                                         <input type="email" name="login-email" class="form-control" id="loginInputEmail1" aria-describedby="emailHelp" maxlength="200">
                                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                     </div>
-                                    <input type="hidden" name="page_url" value="index.php">
+                                    <input type="hidden" name="page_url" value="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>">
                                     <div class="mb-3">
                                         <label for="loginInputPassword1" class="form-label">Password</label>
                                         <input type="password" name="login-password" class="form-control" id="loginInputPassword1" maxlength="22">
@@ -448,13 +430,16 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.5.0/dist/lazyload.min.js"></script>
     <script>
+
         var userStatus = '<?php echo $login_status;?>';
         if(userStatus == '1'){
             $('#user-profile').removeClass('disabled');
         }
+
         function logoutFunc(){
             window.location.href = "user-logout.php";
         }
+
         var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
         $('#login-form').keyup(function(){
             if($('#loginInputEmail1').val() != "" && $('#loginInputPassword1').val() != ""){
@@ -484,62 +469,33 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
                 $('#sign-btn').attr('disabled', true);
             }
         });
-        
-        var exampleModal1 = document.getElementById('exampleModal1')
-        exampleModal1.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            var recipient = button.getAttribute('data-bs-whatever');
-
-            var modalTitle = exampleModal1.querySelector('.modal-title');
-            var modalBodyInput = exampleModal1.querySelector('.modal-body input');
-
-            modalTitle.textContent = 'Read ' + recipient;
-            modalBodyInput.value = recipient;
-        });
-    </script>
-    <script type="module">
-        var swiper = new Swiper('.showcase-swiper', {
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: true,
-            },
-            pagination: {
-                el: '.swiper-pagination-custom1',
-                type: 'progressbar',
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-        var swiper = new Swiper('.slides-per-view', {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            pagination: {
-                el: '.swiper-pagination-custom2',
-                clickable: true,
-            },
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: true,
-            },
-            breakpoints: {
-                499: {
-                    slidesPerView: 1
-                },
-                768: {
-                    slidesPerView: 2
-                },
-                992:{
-                    slidesPerView: 3
-                },
-                1400:{
-                    slidesPerView: 4
-                }
+        <?php
+            if($login_status){
+        ?>
+        $('#msg-form').keyup(function(){
+            if($('#usermail').val() != "" && $('#mailheading').val() != "" && $('#mailbody').val() != ""){
+                $('#msg-btn').attr('disabled', false);
+            } else{
+                $('#msg-btn').attr('disabled', true);
             }
         });
-        var lazyLoadInstance = new LazyLoad({thresholds: "200% 0px",});
-        lazyLoadInstance.update();
+        $('#msg-form').click(function(){
+            if($('#usermail').val() != "" && $('#mailheading').val() != "" && $('#mailbody').val() != ""){
+                $('#msg-btn').attr('disabled', false);
+            } else{
+                $('#msg-btn').attr('disabled', true);
+            }
+        });
+        $("#msg-form").submit(function(event) {
+            var hcaptchaVal = $('[name=h-captcha-response]').val();
+            if (hcaptchaVal === "") {
+                event.preventDefault();
+                alert("Please complete the hCaptcha");
+            }
+        });
+        <?php
+            }
+        ?>
     </script>
     <script>
         var loginToast = document.getElementById('loginToast');

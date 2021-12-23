@@ -43,10 +43,53 @@ switch(@parse_url($_SERVER['REQUEST_URI'])['path']) {
     case '/view-chapter.php':
         require 'view-chapter.php';
         break;
+    case '/validate.php':
+        require 'validate.php';
+        break;
+    case '/user-logout.php':
+        require 'user-logout.php';
+        break;
+    case '/get-rubies.php':
+        require 'get-rubies.php';
+        break;
+    case '/toss-coin-game.php':
+        require 'toss-coin-game.php';
+        break;
+    case '/blackjack-game.php':
+        require 'blackjack-game.php';
+        break;
+    case '/notify-rubies.php':
+        require 'notify-rubies.php';
+        break;
+    case '/add-item.php':
+        require 'add-item.php';
+        break;
+    case '/user-profile.php':
+        require 'user-profile.php';
+        break;
+    case '/search-manga.php':
+        require 'search-manga.php';
+        break;
+    case '/load-item.php':
+        require 'load-item.php';
+        break;
+    case '/about-us.php':
+        require 'about-us.php';
+        break;
+    case '/admin-show-messages.php':
+        require 'admin-show-messages.php';
+        break;
+    case '/admin-show-users.php':
+        require 'admin-show-users.php';
+        break;
+    case '/admin-edit-user.php':
+        require 'admin-edit-user.php';
+        break;
     default:
         http_response_code(404);
-        echo @parse_url($_SERVER['REQUEST_URI'])['path'];
-        exit('->not found');
+        require 'not_found.php';
+        //echo @parse_url($_SERVER['REQUEST_URI'])['path'];
+        exit();
 }
 
 ?>
