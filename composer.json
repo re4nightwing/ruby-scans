@@ -1,7 +1,7 @@
 {
     "license": "proprietary",
-    "name": "Ruby Scans",
-    "description": "Read manga, manhua online",
+    "name": "ruby-scans",
+    "description": "v1.0.0",
     "config": {
         "platform": {
             "php": "7.3"
