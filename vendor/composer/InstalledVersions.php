@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '70d6009d7907abb1f7a6374a033bfbf0ae8cc8eb',
+    'reference' => 'b7afe65885476b077161d3815beec284b4bcbf2f',
     'name' => 'ruby/scans',
   ),
   'versions' => 
@@ -162,12 +162,12 @@ private static $installed = array (
     ),
     'psr/cache' => 
     array (
-      'pretty_version' => '1.0.1',
-      'version' => '1.0.1.0',
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd11b50ad223250cf17b86e38383413f5a6764bf8',
+      'reference' => '213f9dbc5b9bfbc4f8db86d2838dc968752ce13b',
     ),
     'psr/http-client' => 
     array (
@@ -219,12 +219,12 @@ private static $installed = array (
     ),
     'psr/log' => 
     array (
-      'pretty_version' => '1.1.4',
-      'version' => '1.1.4.0',
+      'pretty_version' => '3.0.0',
+      'version' => '3.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+      'reference' => 'fe5ea303b0887d5caefd3d431c3e61ad47037001',
     ),
     'psr/log-implementation' => 
     array (
@@ -283,7 +283,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '70d6009d7907abb1f7a6374a033bfbf0ae8cc8eb',
+      'reference' => 'b7afe65885476b077161d3815beec284b4bcbf2f',
     ),
     'symfony/deprecation-contracts' => 
     array (
