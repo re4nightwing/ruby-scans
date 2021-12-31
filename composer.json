@@ -1,4 +1,9 @@
 {
+    "config": {
+        "platform": {
+            "php": "7.3"
+        }
+    },
     "require": {
         "google/cloud-firestore": "^1.20"
     }
