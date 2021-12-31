@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b7afe65885476b077161d3815beec284b4bcbf2f',
+    'reference' => '859154c478b4e1c8c1ef6e13f4bb237c0e95c975',
     'name' => 'ruby/scans',
   ),
   'versions' => 
@@ -283,7 +283,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b7afe65885476b077161d3815beec284b4bcbf2f',
+      'reference' => '859154c478b4e1c8c1ef6e13f4bb237c0e95c975',
     ),
     'symfony/deprecation-contracts' => 
     array (
