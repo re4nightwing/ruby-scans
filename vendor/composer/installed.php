@@ -6,20 +6,11 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9a53219557272aea9ccb82d7e21823b99579b429',
-    'name' => '__root__',
+    'reference' => '70d6009d7907abb1f7a6374a033bfbf0ae8cc8eb',
+    'name' => 'ruby/scans',
   ),
   'versions' => 
   array (
-    '__root__' => 
-    array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '9a53219557272aea9ccb82d7e21823b99579b429',
-    ),
     'brick/math' => 
     array (
       'pretty_version' => '0.9.3',
@@ -148,12 +139,12 @@
     ),
     'psr/cache' => 
     array (
-      'pretty_version' => '2.0.0',
-      'version' => '2.0.0.0',
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '213f9dbc5b9bfbc4f8db86d2838dc968752ce13b',
+      'reference' => 'd11b50ad223250cf17b86e38383413f5a6764bf8',
     ),
     'psr/http-client' => 
     array (
@@ -205,12 +196,12 @@
     ),
     'psr/log' => 
     array (
-      'pretty_version' => '3.0.0',
-      'version' => '3.0.0.0',
+      'pretty_version' => '1.1.4',
+      'version' => '1.1.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fe5ea303b0887d5caefd3d431c3e61ad47037001',
+      'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
     ),
     'psr/log-implementation' => 
     array (
@@ -262,14 +253,23 @@
       ),
       'reference' => '2a874863c48d643b9e2e254ab288ec203060a0b8',
     ),
-    'symfony/deprecation-contracts' => 
+    'ruby/scans' => 
     array (
-      'pretty_version' => 'v3.0.0',
-      'version' => '3.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => 'c726b64c1ccfe2896cb7df2e1331c357ad1c8ced',
+      'reference' => '70d6009d7907abb1f7a6374a033bfbf0ae8cc8eb',
+    ),
+    'symfony/deprecation-contracts' => 
+    array (
+      'pretty_version' => 'v2.5.0',
+      'version' => '2.5.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6f981ee24cf69ee7ce9736146d1c57c2780598a8',
     ),
     'symfony/polyfill-ctype' => 
     array (
