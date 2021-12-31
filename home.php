@@ -78,6 +78,7 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+        overflow: hidden;
     }
     .showcase-slide img{
         flex-shrink: 0;
@@ -154,7 +155,7 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
+                        <a class="nav-link" href="categories.php">Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="get-rubies.php">Get Rubies</a>
@@ -211,7 +212,7 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
         <div class="swiper showcase-swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png?text=Welcome" class="" alt="">
+                    <img src="https://via.placeholder.com/2100x700/0000ff.png?text=Welcome" class="" alt="">
                 </div>
                 <div class="swiper-slide showcase-slide">
                     <img src="https://via.placeholder.com/2100x700.png" class="" alt="">

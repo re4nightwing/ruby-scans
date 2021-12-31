@@ -112,7 +112,7 @@
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
+                        <a class="nav-link" href="categories.php">Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="get-rubies.php">Get Rubies</a>
@@ -192,7 +192,7 @@
                     if($c>0){
                         $thumbnail = explode('.',$link);
                         echo "<div class='col-12'>";
-                        echo "<img class='img-fluid lazy my-1' src='https://via.placeholder.com/225×350.png'  data-src='https://i.imgur.com/$thumbnail[0]h.$thumbnail[1]'>";
+                        echo "<img class='img-fluid lazy my-1' src='img/loading.gif'  data-src='https://i.imgur.com/$thumbnail[0]h.$thumbnail[1]'>";
                         echo "</div>";
                     } else{
                         $thumbnail = explode('.',$link);
@@ -206,7 +206,7 @@
                     if($link != null){
                         $thumbnail = explode('.',$link);
                         echo "<div class='col-12'>";
-                        echo "<img class='img-fluid lazy my-1' src='https://via.placeholder.com/225×350.png'  data-src='https://i.imgur.com/$thumbnail[0].$thumbnail[1]'>";
+                        echo "<img class='img-fluid lazy my-1' src='img/loading.gif'  data-src='https://i.imgur.com/$thumbnail[0].$thumbnail[1]'>";
                         echo "</div>";
                     }
                 }

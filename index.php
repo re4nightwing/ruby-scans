@@ -85,6 +85,9 @@ switch(@parse_url($_SERVER['REQUEST_URI'])['path']) {
     case '/admin-edit-user.php':
         require 'admin-edit-user.php';
         break;
+    case '/categories.php':
+        require 'categories.php';
+        break;
     default:
         http_response_code(404);
         require 'not_found.php';

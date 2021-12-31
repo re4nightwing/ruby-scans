@@ -118,7 +118,7 @@
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
+                        <a class="nav-link" href="categories.php">Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="get-rubies.php">Get Rubies</a>
@@ -255,7 +255,7 @@
                                 } else{
                                     ?>
                                     <div class="col">
-                                        <button type="button" class="btn btn-outline-light fw-bolder" data-bs-toggle='modal' data-bs-target='#exampleModal' ><?php echo "Chapter ".$row['chapter_number'];?><br><?php echo date_format(date_create($row['update_date']),"Y/m/d");?></button>
+                                        <button type="button" class="btn btn-outline-light fw-bolder" data-bs-toggle='modal' data-bs-target='#exampleModal1' ><?php echo "Chapter ".$row['chapter_number'];?><br><?php echo date_format(date_create($row['update_date']),"Y/m/d");?></button>
                                     </div>
                                     <?php
                                 }
