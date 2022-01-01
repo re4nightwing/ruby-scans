@@ -12,7 +12,7 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
 $status_list = ['Cancelled','Complete','Discontinued','Hiatus','Ongoing'];
 $type_list = ['Doujinshi','Manga','Manhua','Manhwa','OEL','One-shot'];
 $genre_list = ['Action','Adult','Adventure','Comedy','Doujinshi','Drama','Ecchi','Fantasy','Gender Bender','Harem','Hentai','Historical','Horror','Isekai','Josei','Lolicon','Martial Arts','Mature','Mecha','Mystery','Psychological','Romance','School Life','Sci-fi','Seinen','Shotacon','Shoujo','Shoujo Ai','Shounen','Shounen Ai','Slice of Life','Smut','Sports','Supernatural','Tragedy','Yaoi','Yuri'];
-$img_arr = array('https://lh3.googleusercontent.com/proxy/Go-qp_6XFFNMQ9LlKdjrJDpk9oArpVyAR1Opl-JpPWLEN4zfXTGZKE6RUpYylz21KaM3l5aWElcOBgeFx263pzUSyRSbKYM6rcZcK4geU7akOKTBct8lxe4GYJ6xEHkRKk-vNlVZFQ4',
+$img_arr = array('https://i.pinimg.com/236x/fb/dc/34/fbdc3447025a9195a22f21e8b4530e6f.jpg',
     'https://img-9gag-fun.9cache.com/photo/aV35mLy_460s.jpg',
     'https://i.pinimg.com/736x/80/19/cc/8019ccf004a628d323ebe5458c8044d8.jpg',
     'https://i.pinimg.com/736x/8d/38/c5/8d38c5a3dbc10caeefa8618ee3be775f.jpg',
