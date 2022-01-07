@@ -8,7 +8,7 @@
 
 try {
   //$dbh = new PDO("mysql:unix_socket=$inst;dbname=$db", $usr, $pass);
-  $dbh = new PDO("mysql:host=ruby-scans.mysql.database.azure.com;dbname=ruby_cons_db", 'dulan@ruby-scans', 'azure@123');
+  $dbh = new PDO("mysql:host=34.72.85.245;dbname=ruby_cons_db", 'root', '2jBDEgC50DkjjqAj');
 } catch (PDOException $e) {
   echo "error:  " . $e;
 }
