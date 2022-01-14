@@ -293,7 +293,7 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
             </div>
             <div class="row justify-content-around text-center">
                 <div class="col-lg-3 col-md-5 col-11 p-4 my-3 game-card shadow-sm">
-                    <img src="https://via.placeholder.com/150" class="img-fluid mb-4" width="100px" height="100px" alt="">
+                    <img src="img/coin-toss.png" class="img-fluid mb-4" width="100px" height="100px" alt="">
                     <h3>Toss a Coin</h3>
                     <p>Play a simple coin toss to win 5 rubies daily.</p>
                     <div class="loaderImg1" style="display: none;">
@@ -321,7 +321,7 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
                     ?>
                 </div>
                 <div class="col-lg-3 col-md-5 col-11 p-4 my-3 game-card shadow-sm">
-                    <img src="https://via.placeholder.com/150" class="img-fluid mb-4" width="100px" height="100px" alt="">
+                    <img src="img/BlackJack.png" class="img-fluid mb-4" width="100px" height="100px" alt="">
                     <h3>BlackJack</h3>
                     <p>Play a simple BlackJack to win 5 rubies daily.</p>
                     <div class="loaderImg2" style="display: none;">
@@ -348,12 +348,12 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
                     ?>
                 </div>
                 <div class="col-lg-3 col-md-5 col-11 p-4 my-3 game-card shadow-sm">
-                    <img src="https://via.placeholder.com/150" class="img-fluid mb-4" width="100px" height="100px" alt="">
+                    <img src="img/slots.png" class="img-fluid mb-4" width="100px" height="100px" alt="">
                     <h3>Slots</h3>
                     <h4>Coming Soon!</h4>
                 </div>
                 <div class="col-lg-8 col-md-11 col-12 p-4 my-4 game-card shadow-sm">
-                    <img src="https://via.placeholder.com/150" class="img-fluid mb-4" width="100px" height="100px" alt="">
+                    <img src="img/ruby.png" class="img-fluid mb-4" width="100px" height="100px" alt="">
                     <h3>Buy Rubies</h3>
                     <p>Click below to buy Rubies and help us to keep the servers up and running.</p>
                     <?php

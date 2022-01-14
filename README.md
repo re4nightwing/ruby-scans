@@ -38,6 +38,26 @@ That's all for the users.
 
 ## How to use? (Admin)
 #
-In order to login to admin panel, the admins has to go to `SITE-URL/admin.php` page. Then the user will be promted a login screen for admins. Enter Admin credentials to log in. (Admin credentials for )
+In order to login to admin panel, the admins has to go to `SITE-URL/admin.php` page. Then the user will be promted a login screen for admins. Enter Admin credentials to log in. 
+(Admin credentials for demo purposes are username: `admin` & password: `root`)
+
+### Edit Magazine Section
+- Can add new magazines to the site
+- Edit/update existing magazines
+- Delete existing magazines
+
+### Edit Magazine Chapters Section
+- Can add new magazine chapters to the site
+- Update existing chapters
+- Delete existing chapters
+- When adding image links, we used [imgur]('https://imgur.com/') to get image links. When adding image links to the field only the file name is added in a comma separated way. (Ex: https://i.imgur.com/YpvFyBz.png => `YpvFyBz.png`)
+
+### User Details Section
+- A brief on the users
+- Delete user accounts
+
+### Messages and Requests Section
+- In chapter errors tab, these are user submitted errors of chapters from `Report This Chapter` button in magazine chapter page. By clicking on `Mark as read` message is marked read as an indicator that the error was fixed.
+- In user messages tab, these messages are sent by users using the contact form. By clicking on `Mark as read` message is marked read.
 
 ![epic ss here](https://i.imgur.com/pC8oAO6.png)
