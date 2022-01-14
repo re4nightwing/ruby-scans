@@ -60,4 +60,7 @@ In order to login to admin panel, the admins has to go to `SITE-URL/admin.php` p
 - In chapter errors tab, these are user submitted errors of chapters from `Report This Chapter` button in magazine chapter page. By clicking on `Mark as read` message is marked read as an indicator that the error was fixed.
 - In user messages tab, these messages are sent by users using the contact form. By clicking on `Mark as read` message is marked read.
 
+Azure - [http://ruby-scans-test.azurewebsites.net/]('http://ruby-scans-test.azurewebsites.net')
+GCP - [https://atomic-parity-338208.uc.r.appspot.com/]('https://atomic-parity-338208.uc.r.appspot.com')
+
 ![epic ss here](https://i.imgur.com/pC8oAO6.png)
