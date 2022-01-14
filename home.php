@@ -212,16 +212,16 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
         <div class="swiper showcase-swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700/0000ff.png?text=Welcome" class="" alt="">
+                    <img src="img/s1.jpg" class="" alt="">
                 </div>
                 <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png" class="" alt="">
+                    <img src="img/s2.jpg" class="" alt="">
                 </div>
                 <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png" class="" alt="">
+                    <img src="img/s3.jpg" class="" alt="">
                 </div>
                 <div class="swiper-slide showcase-slide">
-                    <img src="https://via.placeholder.com/2100x700.png" class="" alt="">
+                    <img src="img/s4.jpg" class="" alt="">
                 </div>
             </div>
             <!-- Add Pagination -->
