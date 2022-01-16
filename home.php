@@ -54,7 +54,7 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
     <style>
     .showcase-swiper {
         width: 100%;
-        height: 60vh;
+        height: 33.33vw;
     }
     .swiper-wrapper {
         height: auto !important;
@@ -82,7 +82,7 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
     }
     .showcase-slide img{
         flex-shrink: 0;
-        min-width: 100%;
+        width: 100%;
         min-height: 100%
     }
     .slides-per-view {
