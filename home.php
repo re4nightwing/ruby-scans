@@ -59,7 +59,9 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
     .swiper-wrapper {
         height: auto !important;
     }
-
+    .ruby{
+        color: #ed053b;
+    }
     .showcase-slide {
         text-align: center;
         font-size: 18px;
@@ -138,6 +140,10 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
     }
     .abs-slide-content h4{
         text-shadow: 2px 2px 4px #000;
+    }
+    .table-separator{
+        height: 400px;
+        overflow-y: scroll;
     }
     </style>
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
@@ -318,7 +324,6 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
                             <?php
                         }
                     }
-                    $dbh = null;
                     ?>
                 </div>
             </div>
@@ -336,12 +341,71 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
                                 }
                             ?>
                         </div>
+                        <div class="col-xl-10 col-md-6 col-11 text-center">
+                            <h3 class="mt-5">Support <span class="ruby">Us</span></h3>
+                            <a href="#paypallink">
+                                <div class="support-btn px-4 py-2 bg-light my-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Just do it!">
+                                    <img src="img/support/paypal-logo.png" class="img-fluid" alt="">
+                                </div>
+                            </a>
+                            <a href="#patreonlink">
+                                <div class="support-btn px-4 py-1 bg-light my-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Just do it!">
+                                    <img src="img/support/Patreon-logo-2013.png" class="img-fluid" alt="">
+                                </div>
+                            </a>
+                            <a href="#discordlink">
+                                <div class="support-btn px-4 py-2 bg-light my-2"  data-bs-toggle="tooltip" data-bs-placement="top" title="Do it!">
+                                    <img src="img/support/discord-logo.png" class="img-fluid" alt="">
+                                </div>
+                            </a>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="slayer-feed text-center mt-5">
+                <h2 class="dark-bg-heading text-center mb-4">Slayer's Feed</h2>
+                <div class="table-separator">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col">Series</th>
+                            <th scope="col">Chapter</th>
+                            <th scope="col">Time Elapsed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $now = time();
+                                $custom_query = "SELECT `magazine_id`, `mag_title`, mag_type,`upload_date`,`chapter_number` FROM `magazine-chapters`,`magazine-details` WHERE `magazine_id`=`mag_id` ORDER BY `upload_date` DESC LIMIT 30";
+                                foreach ($dbh->query($custom_query) as $data) {
+                                    $your_date = strtotime($data['upload_date']);
+                                    $datediff = $now - $your_date;
+                                    $numDays = round($datediff / (60 * 60 * 24));
+                                    if($data['mag_type'] == 'Manga'){
+                                        echo '<tr><td><span class="badge bg-success">'.$data['mag_type'].'</span></td>';
+                                    } else if($data['mag_type'] == 'Manhwa'){
+                                        echo '<tr><td><span class="badge bg-warning text-dark">'.$data['mag_type'].'</span></td>';
+                                    } else{
+                                        echo '<tr><td><span class="badge bg-light text-dark">'.$data['mag_type'].'</span></td>';
+                                    }
+                                    
+                                    echo '<td>'.$data['mag_title'].'</td>';
+                                    echo '<td>Chapter '.$data['chapter_number'].'</td>';
+                                    if($numDays == 0){
+                                        echo '<td>Today</td></tr>';
+                                    }else{
+                                        echo '<td>'.$numDays.' days ago</td></tr>';
+                                    }
+                                    
+                                }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </section>
-
     <?php
         include 'footer.php';
     ?>
@@ -449,6 +513,11 @@ $category_class = array("bg-primary", "bg-secondary", "bg-info text-dark", "bg-l
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.5.0/dist/lazyload.min.js"></script>
     <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+
         var userStatus = '<?php echo $login_status;?>';
         if(userStatus == '1'){
             $('#user-profile').removeClass('disabled');

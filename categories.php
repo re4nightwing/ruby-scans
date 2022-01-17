@@ -13,10 +13,10 @@ $status_list = ['Cancelled','Complete','Discontinued','Hiatus','Ongoing'];
 $type_list = ['Doujinshi','Manga','Manhua','Manhwa','OEL','One-shot'];
 $genre_list = ['Action','Adult','Adventure','Comedy','Doujinshi','Drama','Ecchi','Fantasy','Gender Bender','Harem','Hentai','Historical','Horror','Isekai','Josei','Lolicon','Martial Arts','Mature','Mecha','Mystery','Psychological','Romance','School Life','Sci-fi','Seinen','Shotacon','Shoujo','Shoujo Ai','Shounen','Shounen Ai','Slice of Life','Smut','Sports','Supernatural','Tragedy','Yaoi','Yuri'];
 $img_arr = array('https://i.pinimg.com/236x/fb/dc/34/fbdc3447025a9195a22f21e8b4530e6f.jpg',
-    'https://img-9gag-fun.9cache.com/photo/aV35mLy_460s.jpg',
+    'https://i.pinimg.com/originals/54/a5/33/54a533689895222755ad678e7c7be409.jpg',
     'https://i.pinimg.com/736x/80/19/cc/8019ccf004a628d323ebe5458c8044d8.jpg',
     'https://i.pinimg.com/736x/8d/38/c5/8d38c5a3dbc10caeefa8618ee3be775f.jpg',
-    'https://cdn.inprnt.com/thumbs/dc/43/dc432e4d676637c4b6f4536aa3a2c7a2.jpg',
+    'https://i.pinimg.com/originals/1b/51/87/1b5187559e86841d39277f07753f5a7e.jpg',
     'https://i.pinimg.com/236x/a1/de/14/a1de1480d603e4a3c6e1566cc40e7ae7.jpg',
     'https://i.pinimg.com/236x/c2/d6/40/c2d640c431f6861bd1880985d835d31b.jpg',
     'https://i.pinimg.com/236x/67/bf/37/67bf37932edb6c3bc510b79e40d06152.jpg',
