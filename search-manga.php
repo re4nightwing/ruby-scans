@@ -633,8 +633,8 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
                 //var nextURL = ('http://localhost/test-cloud/search-manga.php?searchq='+searchVal+'&authorq='+authorVal+'&yearq='+yearVal+'&sortq='+sortVal+'&statusq='+statusVal+'&typeq='+typeVal+'&genreq='+genreVal);
                 var nextTitle = $(document).find("title").text();
                 var nextState = { additionalInformation: 're4nightwing' };
-                window.history.pushState(nextState, nextTitle, nextURL);
                 $('.pageCover').fadeOut(500);
+                window.history.pushState(nextState, nextTitle, nextURL);
             });
             
         }
