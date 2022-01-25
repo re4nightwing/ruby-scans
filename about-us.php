@@ -286,7 +286,7 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
                     </div>
                 </div>
                 <div class="col profile-card mx-2 shadow-sm">
-                    <img src="img/team/temp.png" alt="">
+                    <img src="img/team/Ann.png" alt="">
                     <div class="abs-content text-light">
                         <h5>Ann Kishanthi</h5>
                         <h6>Member</h6>
