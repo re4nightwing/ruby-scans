@@ -91,7 +91,6 @@ switch(@parse_url($_SERVER['REQUEST_URI'])['path']) {
     default:
         http_response_code(404);
         require 'not_found.php';
-        //echo @parse_url($_SERVER['REQUEST_URI'])['path'];
         exit();
 }
 

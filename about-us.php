@@ -151,11 +151,15 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
         }
         .profile-card img{
             min-height: 100%;
-            min-width: 100%;
+            min-width: 110%;
             flex-shrink: 0;
         }
         .ruby {
             color: #ed053b;
+        }
+        .abs-content{
+            text-shadow: 1px 1px 4px #000;
+            width: 100%;
         }
     </style>
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
@@ -233,63 +237,64 @@ if(isset($_SESSION["email"]) && isset($_SESSION['user_uid'])){
             </div>
             <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 justify-content-around mt-5">
                 <div class="col profile-card mx-2 shadow-sm">
-                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
-                    <div class="abs-content">
-                        <h5>John Doe</h5>
+                    <img src="img/team/dulan.jpg" alt="">
+                    <div class="abs-content text-light">
+                        <h5>Dulan Pabasara</h5>
                         <h6>Member</h6>
                     </div>
                     <div class="abs-social">
-                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.facebook.com/re4nightwingIG/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/re4nightwing"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/re4nightwing/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://github.com/re4nightwing"><i class="fab fa-github"></i></a>&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
                 <div class="col profile-card mx-2 shadow-sm">
-                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
-                    <div class="abs-content">
-                        <h5>John Doe</h5>
+                    <img src="img/team/wageesh.jpg" alt="">
+                    <div class="abs-content text-light">
+                        <h5>Wageesha Isira</h5>
                         <h6>Member</h6>
                     </div>
                     <div class="abs-social">
-                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.facebook.com/wageeshaisira.aluthgama"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <!-- <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp; -->
                     </div>
                 </div>
                 <div class="col profile-card mx-2 shadow-sm">
-                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
-                    <div class="abs-content">
-                        <h5>John Doe</h5>
+                    <img src="img/team/achini.jpeg" alt="">
+                    <div class="abs-content text-light">
+                        <h5>Achini Shashikala</h5>
                         <h6>Member</h6>
                     </div>
                     <div class="abs-social">
-                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.facebook.com/achini.shashikala.319"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <!-- <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp; -->
                     </div>
                 </div>
                 <div class="col profile-card mx-2 shadow-sm">
-                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
-                    <div class="abs-content">
-                        <h5>John Doe</h5>
+                    <img src="img/team/lakitha.jpeg" alt="">
+                    <div class="abs-content text-light">
+                        <h5>Lakitha Madanayake</h5>
                         <h6>Member</h6>
                     </div>
                     <div class="abs-social">
-                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.facebook.com/lakitha.madanayake.7"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <!-- <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp; -->
                     </div>
                 </div>
                 <div class="col profile-card mx-2 shadow-sm">
-                    <img src="https://i0.wp.com/thenerddaily.com/wp-content/uploads/2018/08/Reasons-To-Watch-Anime.jpg" alt="">
-                    <div class="abs-content">
-                        <h5>John Doe</h5>
+                    <img src="img/team/Ann.png" alt="">
+                    <div class="abs-content text-light">
+                        <h5>Ann Kishanthi</h5>
                         <h6>Member</h6>
                     </div>
                     <div class="abs-social">
-                        <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+                        <!-- <a href="https://www.facebook.com/r10sac/"><i class="fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
                         <a href="https://twitter.com/IEEER10SAC"><i class="fab fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/ieeer10sac/"><i class="fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp; -->
                     </div>
                 </div>
             </div>

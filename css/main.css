@@ -56,6 +56,10 @@ body{
     color: #fff;
     text-shadow: 0 0 8px #fcb3b3;
 }
+.support-btn{
+    border-radius: 8px;
+    box-shadow: 3px 3px 8px #c0c0c0;
+}
 .navbar-collapse ul{
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
